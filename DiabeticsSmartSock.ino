@@ -10,42 +10,54 @@ const int sensorPins[] = {A0,A1,A2,A3};
 int sensorValues[4];
 
 #define ONE_WIRE_BUS_1 2 // D2
+#define ONE_WIRE_BUS_2 3 // D3
+#define ONE_WIRE_BUS_3 4 // D4
+#define ONE_WIRE_BUS_4 5 // D5
 OneWire oneWire1(ONE_WIRE_BUS_1); // create object of type oneWire
-DallasTemperature tempSensor(&oneWire1);
+OneWire oneWire2(ONE_WIRE_BUS_2); 
+OneWire oneWire3(ONE_WIRE_BUS_3); 
+OneWire oneWire4(ONE_WIRE_BUS_4); 
+// create DallasTemp object
+DallasTemperature tempSensor[] = {
+                          DallasTemperature (&oneWire1),
+                          DallasTemperature (&oneWire2),
+                          DallasTemperature (&oneWire3),
+                          DallasTemperature (&oneWire4)
+                          };
 
   
 
 
 void setup() {
-  // put your setup code here, to run once:
   Serial.begin(9600); // set up serial communication
-  bluetooth.begin(9600) // defualt baud rate
+  bluetooth.begin(9600) ;// defualt baud rate
+  // Initialise all temp sensors
+  for (int i = 0; i < 4; i++) {
+    tempSensor[i].begin();
+  }
 }
 
 void loop() {
-  int pressure = analogRead(A0);
-  float temperature = tempSensor.getTempCByIndex(0);
-
-  // Send over Bluetooth
-  bluetooth.print("Pressure: ");
-  bluetooth.print(pressure);
-  bluetooth.print(", Temperature: ");
-  bluetooth.println(temperature);
-
-  // print pressure values
+    // print pressure values
   for (int i =0; i<4;i++) {
     sensorValues[i] = analogRead(sensorPins[i]);
-    Serial.print("Pressure Reading P");
-    Serial.print(i+1);
-    Serial.print(':');
-    Serial.println(sensorValues[i]);
+    bluetooth.print("Pressure Reading P");
+    bluetooth.print(i+1);
+    bluetooth.print(':');
+    bluetooth.println(sensorValues[i]);
   }
-  
-  tempSensor.requestTemperatures(); // call the get temp method
-  float tempC = tempSensor.getTempCByIndex(0); // get the temp
-  Serial.print("Temperature: ");
-  Serial.print(tempC);
-  Serial.println(" °C");
+  // request temp values
+  for(int i =0;i<4;i++) {
+    tempSensor[i].requestTemperatures(); // call the get temp method
+  }
 
+  delay(750); // ensure temperature conversion is completed
+
+  for(int i =0;i<4;i++) {
+    float tempC = tempSensor[i].getTempCByIndex(0); // get the temp
+    bluetooth.print("Temperature: ");
+    bluetooth.print(tempC);
+    bluetooth.println(" °C");
+  }
   delay(1000);
 }
