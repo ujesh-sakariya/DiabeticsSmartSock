@@ -26,7 +26,7 @@ async def main():
 
         print("Receiving data... Press Ctrl+C to stop.")
         while True: # loop to allow for async task to continuously run
-            await asyncio.sleep(2) 
+            await asyncio.sleep(1) 
         
 asyncio.run(main())
 

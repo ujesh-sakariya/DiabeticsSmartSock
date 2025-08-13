@@ -41,9 +41,9 @@ void loop() {
     // print pressure values
   for (int i =0; i<4;i++) {
     sensorValues[i] = analogRead(sensorPins[i]);
-    bluetooth.print("Pressure Reading P");
+    bluetooth.print("P");
     bluetooth.print(i+1);
-    bluetooth.print(':');
+    bluetooth.print(":");
     bluetooth.println(sensorValues[i]);
   }
   // request temp values
@@ -55,9 +55,10 @@ void loop() {
 
   for(int i =0;i<4;i++) {
     float tempC = tempSensor[i].getTempCByIndex(0); // get the temp
-    bluetooth.print("Temperature: ");
-    bluetooth.print(tempC);
-    bluetooth.println(" °C");
+    bluetooth.print("T");
+    bluetooth.print(i+1);
+    bluetooth.print(":");
+    bluetooth.println(tempC);
   }
   delay(1000);
 }
