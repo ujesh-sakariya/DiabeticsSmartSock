@@ -101,15 +101,10 @@ def simulate_activity(duration_sec=1800,activity='walking', inflamed=[0,0,0,0], 
         L_ball_risk[t]= classify_risk(L_ball_temp[t],R_ball_temp[t],L_ball_pressure[t],R_ball_pressure[t])
         R_ball_risk[t] = classify_risk(R_ball_temp[t],L_ball_temp[t],R_ball_pressure[t],L_ball_pressure[t])
 
-    with open('simulated_data.csv',mode='a', newline='') as file:
+    with open('simulated_data_testing.csv',mode='a', newline='') as file:
             
         writer = csv.writer(file)
 
-        writer.writerow([
-                    'L_heel_pressure', 'L_ball_pressure', 'L_heel_temp', 'L_ball_temp',
-                    'R_heel_pressure', 'R_ball_pressure', 'R_heel_temp', 'R_ball_temp',
-                    'L_heel_risk', 'L_ball_risk', 'R_heel_risk', 'R_ball_risk'
-                ])
         # Loop through your arrays to write each timestep as a row
         for t in range(duration_sec):
             writer.writerow([
@@ -150,8 +145,17 @@ def classify_risk(risk_temp,compare_temp,risk_pressure,compare_pressure):
                     
             
 if __name__ == "__main__":
+    with open('simulated_data_testing.csv',mode='a', newline='') as file:
+            
+        writer = csv.writer(file)
+
+        writer.writerow([
+                    'L_heel_pressure', 'L_ball_pressure', 'L_heel_temp', 'L_ball_temp',
+                    'R_heel_pressure', 'R_ball_pressure', 'R_heel_temp', 'R_ball_temp',
+                    'L_heel_risk', 'L_ball_risk', 'R_heel_risk', 'R_ball_risk'
+                ])
     
-    activity = ['lying']
+    activity = ['walking','lying','standing']
     inflamation = [[0,0,0,0],
     [2.2,0,0,0],
     [0,2.2,0,0],
@@ -162,7 +166,7 @@ if __name__ == "__main__":
     for a in activity:
          for i in inflamation:
               for j in imbalance:
-                    simulate_activity(1, a, i,j)
+                    simulate_activity(60, a, i,j)
 
 
 
