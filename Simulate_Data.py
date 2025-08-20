@@ -101,7 +101,7 @@ def simulate_activity(duration_sec=1800,activity='walking', inflamed=[0,0,0,0], 
         L_ball_risk[t]= classify_risk(L_ball_temp[t],R_ball_temp[t],L_ball_pressure[t],R_ball_pressure[t])
         R_ball_risk[t] = classify_risk(R_ball_temp[t],L_ball_temp[t],R_ball_pressure[t],L_ball_pressure[t])
 
-    with open('simulated_data_testing.csv',mode='a', newline='') as file:
+    with open('simulated_data_training.csv',mode='a', newline='') as file:
             
         writer = csv.writer(file)
 
@@ -145,7 +145,7 @@ def classify_risk(risk_temp,compare_temp,risk_pressure,compare_pressure):
                     
             
 if __name__ == "__main__":
-    with open('simulated_data_testing.csv',mode='a', newline='') as file:
+    with open('simulated_data_training.csv',mode='a', newline='') as file:
             
         writer = csv.writer(file)
 
@@ -160,7 +160,19 @@ if __name__ == "__main__":
     [2.2,0,0,0],
     [0,2.2,0,0],
     [0,0,2.2,0],
-    [0,0,0,2.2]]
+    [0,0,0,2.2],
+    [0,0,2.2,2.2],
+    [0,2.2,0,2.2],
+    [2.2,0,0,2.2],
+    [0,2.2,2.2,0],
+    [2.2,0,2.2,0],
+    [2.2,2.2,0,0],
+    [0,2.2,2.2,2.2],
+    [2.2,2.2,0,2.2],
+    [2.2,2.2,2.2,0],
+    [2.2,0,2.2,2.2],
+    [2.2,2.2,2.2,2.2]
+    ]
     imbalance = [[0,0],[1,0],[0,1]]
 
     for a in activity:
