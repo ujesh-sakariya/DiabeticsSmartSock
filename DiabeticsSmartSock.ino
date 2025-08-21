@@ -35,16 +35,15 @@ void setup() {
   for (int i = 0; i < 4; i++) {
     tempSensor[i].begin();
   }
+  delay(100);
 }
 
 void loop() {
     // print pressure values
   for (int i =0; i<4;i++) {
     sensorValues[i] = analogRead(sensorPins[i]);
-    bluetooth.print("P");
-    bluetooth.print(i+1);
-    bluetooth.print(":");
-    bluetooth.println(sensorValues[i]);
+    bluetooth.print(sensorValues[i]);
+    bluetooth.print(",");
   }
   // request temp values
   for(int i =0;i<4;i++) {
@@ -55,10 +54,11 @@ void loop() {
 
   for(int i =0;i<4;i++) {
     float tempC = tempSensor[i].getTempCByIndex(0); // get the temp
-    bluetooth.print("T");
-    bluetooth.print(i+1);
-    bluetooth.print(":");
-    bluetooth.println(tempC);
+    bluetooth.print(tempC);
+    bluetooth.print(",");
+
   }
+  bluetooth.println();
+
   delay(1000);
 }
