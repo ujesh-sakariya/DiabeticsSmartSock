@@ -20,8 +20,8 @@ def extractFeatures(data):
     parts = ['L_heel_','L_ball_','R_heel_','R_ball_']
 
     current = pd.DataFrame(data,columns=[
-                    'L_heel_pressure', 'L_ball_pressure', 'L_heel_temp', 'L_ball_temp',
-                    'R_heel_pressure', 'R_ball_pressure', 'R_heel_temp', 'R_ball_temp'])
+                    'L_heel_pressure', 'L_ball_pressure', 'R_heel_pressure', 'R_ball_pressure',
+                    'L_heel_temp', 'L_ball_temp','R_heel_temp', 'R_ball_temp'])
     for p in parts:
         
         features[p+'temp_mean'] = current[p+'temp'].mean()
