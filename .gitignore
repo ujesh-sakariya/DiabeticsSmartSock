@@ -1,3 +1,7 @@
+#python
+__pycache__/
+*.pyc
+
 # CSV files 
 simulated_data_testing.csv
 simulated_data_training.csv
