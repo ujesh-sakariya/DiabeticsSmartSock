@@ -25,6 +25,12 @@ DallasTemperature tempSensor[] = {
                           DallasTemperature (&oneWire4)
                           };
 
+// timing controls
+unsigned long lastTempTime = 0;
+const unsigned long tempInterval = 5000; // so we can record temp every 1 second
+
+//store the temp values
+float lastTempValues[4] = {0,0,0,0};
   
 
 
@@ -45,20 +51,25 @@ void loop() {
     bluetooth.print(sensorValues[i]);
     bluetooth.print(",");
   }
-  // request temp values
-  for(int i =0;i<4;i++) {
-    tempSensor[i].requestTemperatures(); // call the get temp method
+
+  // Read temperature if interval passed
+  unsigned long currentMillis = millis();
+  if (currentMillis - lastTempTime >= tempInterval) {
+    lastTempTime = currentMillis;
+
+    for (int i = 0; i < 4; i++) {
+      tempSensor[i].requestTemperatures();
+      lastTempValues[i] = tempSensor[i].getTempCByIndex(0);
+    }
   }
-
-  delay(750); // ensure temperature conversion is completed
-
+  
   for(int i =0;i<4;i++) {
     float tempC = tempSensor[i].getTempCByIndex(0); // get the temp
+    Serial.println(tempC);
     bluetooth.print(tempC);
     bluetooth.print(",");
 
   }
   bluetooth.println();
 
-  delay(1000);
 }

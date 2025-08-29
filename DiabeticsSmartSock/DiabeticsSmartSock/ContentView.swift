@@ -9,16 +9,30 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        // vertical stack components
         VStack {
-            // image
-            Image(systemName: "pencil")
-                .imageScale(.large)
-                .foregroundStyle(.primaryColour)
-            // text
-            Text("Hello, world1!")
-                .bold()
+            Text("Foot Health")
+                .font(.system(size: 50, weight: .bold))
+                .foregroundColor(Color("PrimaryColour"))
+                .padding(.top,-20)
+                .padding(.bottom,10)
             
+            Button(action: {print("button")}) {
+                Text("Connect Device")
+                    .padding(.horizontal,20)
+                    .padding(.vertical,10)
+                    .font(.system(size: 20, weight: .bold))
+                    .background(Color.gray)
+                    .foregroundColor(Color("PrimaryColour"))
+                    .cornerRadius(25)
+            }
+            
+    
+            Image("footprint")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 500, height: 500)
+            
+                Spacer()
         }
         .padding()
     }
