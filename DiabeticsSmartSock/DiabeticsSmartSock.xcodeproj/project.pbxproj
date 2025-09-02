@@ -29,9 +29,22 @@
 		26BC80992E5CFAEA0093B3B5 /* DiabeticsSmartSockUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DiabeticsSmartSockUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		269B826C2E637EAA00187A86 /* Exceptions for "DiabeticsSmartSock" folder in "DiabeticsSmartSock" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 26BC80812E5CFAE80093B3B5 /* DiabeticsSmartSock */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		26BC80842E5CFAE80093B3B5 /* DiabeticsSmartSock */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				269B826C2E637EAA00187A86 /* Exceptions for "DiabeticsSmartSock" folder in "DiabeticsSmartSock" target */,
+			);
 			path = DiabeticsSmartSock;
 			sourceTree = "<group>";
 		};
@@ -400,6 +413,9 @@
 				DEVELOPMENT_TEAM = 444C68KQ5H;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DiabeticsSmartSock/Info.plist;
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "This app uses Bluetooth to connect to the smart sock dvice";
+				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "This app uses Bluetooth to connect to the smart sock dvice";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -429,6 +445,9 @@
 				DEVELOPMENT_TEAM = 444C68KQ5H;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DiabeticsSmartSock/Info.plist;
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "This app uses Bluetooth to connect to the smart sock dvice";
+				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "This app uses Bluetooth to connect to the smart sock dvice";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

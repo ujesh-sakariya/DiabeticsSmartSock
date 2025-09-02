@@ -27,7 +27,7 @@ DallasTemperature tempSensor[] = {
 
 // timing controls
 unsigned long lastTempTime = 0;
-const unsigned long tempInterval = 5000; // so we can record temp every 1 second
+const unsigned long tempInterval = 5000; // so we can record temp every 5 second
 
 //store the temp values
 float lastTempValues[4] = {0,0,0,0};
@@ -64,12 +64,10 @@ void loop() {
   }
   
   for(int i =0;i<4;i++) {
-    float tempC = tempSensor[i].getTempCByIndex(0); // get the temp
-    Serial.println(tempC);
-    bluetooth.print(tempC);
+    bluetooth.print(lastTempValues[i]);
     bluetooth.print(",");
 
   }
   bluetooth.println();
-
+  delay(50);
 }
