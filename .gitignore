@@ -19,3 +19,7 @@ DerivedData/
 # macOS system files
 *.DS_Store
 
+#venv
+.venv
+.venv_coreml
+

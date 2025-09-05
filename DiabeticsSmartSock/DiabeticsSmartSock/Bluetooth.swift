@@ -49,7 +49,7 @@ class BluetoothManager:NSObject, ObservableObject, CBCentralManagerDelegate, CBP
     }
     
     // function to handle when a user selects the device
-    func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral,advertisementData: [String : Any], rssi RSSI: NSNumber) {
+    func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
         print("Connected to: \(peripheral.name ?? "Unknown")")
         // this class will now handle the commuication with the device
         peripheral.delegate = self
