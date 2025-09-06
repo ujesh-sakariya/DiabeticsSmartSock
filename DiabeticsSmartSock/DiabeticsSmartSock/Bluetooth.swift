@@ -21,6 +21,8 @@ class BluetoothManager:NSObject, ObservableObject, CBCentralManagerDelegate, CBP
     @Published var connectedPeripheral: CBPeripheral!
     // store the chatacteristics
     var dataCharacteristic: CBCharacteristic?
+    // create a single ML model object when the device connects
+    var riskPredictor: PredictRisk?
     
     
     override init() {
@@ -55,6 +57,13 @@ class BluetoothManager:NSObject, ObservableObject, CBCentralManagerDelegate, CBP
         peripheral.delegate = self
         peripheral.discoverServices([ServiceUUID])
         connectedPeripheral = peripheral
+        do {
+            riskPredictor = try PredictRisk()
+            print("ML model loaded")
+        }
+        catch {
+            print("Failed to load ML models \(error)")
+        }
 
     }
     
