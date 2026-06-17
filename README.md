@@ -1,23 +1,66 @@
 # Diabetics Smart Sock
 
 ## 📌 Overview
-A wearable smart sock prototype that uses temperature and pressure sensors embedded in the insole to monitor different regions of the foot. Data is then collected via an Arduino and transmitted over Bluetooth to a mobile app where it is fed into a ML model that predictd **foot ulcer risk** and provides real-time analysis
+A wearable foot-monitoring prototype that uses pressure and temperature sensors to detect potential diabetic foot risk areas in real time. Sensor data is streamed from an Arduino-based smart sock over Bluetooth to an iOS app, where Core ML models predict risk levels for four foot regions: left heel, left ball, right heel, and right ball. The app visualises the predictions using colour-coded indicators over a foot diagram.
+
+## App Demo
+
+<img src="./assets/App.PNG" alt="Mobile app screenshot showing temperature readings" width="400">
+<img src="./assets/AppDemo1.gif" alt="GIF showing the mobile app demo" width="400">
+
+<img src="./assets/XcodeDataLog.gif" alt="GIF showing Xcode temperature data logs" width="800">
+
+> **Note:** Two temperature readings show `-127`  because those sensors are not connected.
+
+## Hardware
+
+<img src="./assets/Hardware1.jpg" alt="Hardware setup photo 1" width="400">
+<img src="./assets/Hardware2.jpg" alt="Hardware setup photo 2" width="400">
+
+
+- Hardware prototype
+- iOS Bluetooth connection screen
+- Live sensor readings in Xcode/app
+- Foot image with LEDs changing based on predicted risk
+
+## Features
+
+- Real-time Bluetooth data streaming from Arduino/HM-10 to iOS
+- Pressure and temperature monitoring across four foot regions
+- 30-sample sliding window feature extraction
+- Four Random Forest classifiers exported to Core ML
+- On-device risk prediction in the iOS app
+- Colour-coded foot visualisation for localised risk feedback
+
+## System Architecture
+
+Arduino sensors -> HM-10 Bluetooth -> iOS app -> Core ML models -> foot risk LEDs
 
 ---
-## 🧩 ML Pipeline
-1. Data Acquisition
-    - Collect temperature and pressure time-series from sensors at ~100 Hz.
-2. Preprocessing & Feature Extraction
-    - Segment data into sliding windows
-    - Compute mean, standard deviation, and cross-foot differences
-3. Labeling Risk
-    - Assign 0–4 risk categories based on domain-inspired temperature & pressure rules
-4. Model Training
-    - Train a Random Forest classifier on extracted features
-5. Model Evaluation
-    - Generate classification reports and confusion matrices
-6. Real-Time Deployment
-    - Stream live sensor data via Bluetooth → predict risk → display on app
+## Machine Learning
+
+The original model predicted four outputs simultaneously. To make the model easier to integrate with Core ML on iOS, the pipeline was refactored into four separate Random Forest classifiers:
+
+- `L_heel_risk`
+- `L_ball_risk`
+- `R_heel_risk`
+- `R_ball_risk`
+
+Each model uses the same 20 engineered features calculated over a 30-sample window. These include pressure and temperature means, standard deviations, and cross-foot differences.
+
+The trained scikit-learn models are exported to Core ML so predictions can run directly on-device without requiring a server.
+
+---
+
+## iOS App
+
+The iOS app connects to the smart sock over Bluetooth, receives live CSV sensor data, reconstructs complete readings from Bluetooth packets, calculates the required ML features, and runs the Core ML models locally.
+
+Predicted risk values are displayed as four LEDs over a foot image:
+
+- Green: low risk
+- Yellow/orange: moderate risk
+- Red/purple: higher risk
 
 ---
 ## 🔧 Hardware Setup
@@ -58,7 +101,7 @@ This project demonstrates how **wearable IoT sensors + ML** can provide early wa
 ---
 
 ## 📂 Dataset
-- Data collected from **temperature and pressure sensors** embedded in insoles.
+- Data collected from **temperature and pressure sensors** embedded in insoles (normal data).
 - Data simulated for an individual at risk of foot ulcers, informed by established scientific evidence  
 - Each foot is divided into **4 regions**:
   - Left Heel  
@@ -100,3 +143,17 @@ elif temp_diff > 1.1:
         return 1      # moderate temp diff but low pressure
 else:
     return 0          # no significant risk
+
+## Limitations and Next Steps
+
+This is a prototype and is not intended for medical diagnosis. Current limitations include sensor calibration and  small/simulated training data.
+
+## Future Improvements
+
+- Collect a larger real-world dataset across different users, foot sizes, walking patterns, and activity levels
+- Improve sensor reliability, calibration, and handling of failed readings
+- Add live charts for pressure and temperature trends in the iOS app
+- Validate predictions against labelled test scenarios and expert-reviewed risk examples
+- Reduce the size of the electronics and wiring to make the prototype wearable for everyday use
+- Improve the physical sock enclosure so the sensors stay correctly positioned while walking
+- Explore a smaller battery-powered design with safer cable routing and better comfort
