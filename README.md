@@ -5,23 +5,33 @@ A wearable foot-monitoring prototype that uses pressure and temperature sensors 
 
 ## App Demo
 
-<img src="./assets/App.PNG" alt="Mobile app screenshot showing temperature readings" width="400">
-<img src="./assets/AppDemo1.gif" alt="GIF showing the mobile app demo" width="400">
+<table>
+  <tr>
+    <td>
+      <img src="./assets/App.PNG" alt="Mobile app screenshot showing temperature readings" width="400">
+    </td>
+    <td>
+      <img src="./assets/AppDemo1.gif" alt="GIF showing the mobile app demo" width="400">
+    </td>
+  </tr>
+</table>
 
 <img src="./assets/XcodeDataLog.gif" alt="GIF showing Xcode temperature data logs" width="800">
 
-> **Note:** Two temperature readings show `-127`  because those sensors are not connected.
+> **Note:** Two temperature readings show `-127` because those sensors are not connected.
 
 ## Hardware
 
-<img src="./assets/Hardware1.jpg" alt="Hardware setup photo 1" width="400">
-<img src="./assets/Hardware2.jpg" alt="Hardware setup photo 2" width="400">
-
-
-- Hardware prototype
-- iOS Bluetooth connection screen
-- Live sensor readings in Xcode/app
-- Foot image with LEDs changing based on predicted risk
+<table>
+  <tr>
+    <td>
+      <img src="./assets/Hardware1.jpg" alt="Hardware setup photo 1" width="400">
+    </td>
+    <td>
+      <img src="./assets/Hardware2.jpg" alt="Hardware setup photo 2" width="400">
+    </td>
+  </tr>
+</table>
 
 ## Features
 
