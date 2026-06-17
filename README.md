@@ -18,7 +18,7 @@ A wearable foot-monitoring prototype that uses pressure and temperature sensors 
 
 <img src="./assets/XcodeDataLog.gif" alt="GIF showing Xcode temperature data logs" width="800">
 
-> **Note:** Two temperature readings show `-127` because those sensors are not connected.
+> **Note:** Two temperature readings show `-127` because those sensors are not connected. This is why there is a warning saying temperature values look invalid
 
 ## Hardware
 
@@ -154,9 +154,12 @@ elif temp_diff > 1.1:
 else:
     return 0          # no significant risk
 
+```
+
+
 ## Limitations and Next Steps
 
-This is a prototype and is not intended for medical diagnosis. Current limitations include sensor calibration and  small/simulated training data.
+This is a prototype and is not intended for medical diagnosis. Current limitations include sensor calibration,small/simulated training and lack of wearability
 
 ## Future Improvements
 
