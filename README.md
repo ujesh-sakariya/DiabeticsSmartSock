@@ -16,6 +16,7 @@ A wearable foot-monitoring prototype that uses pressure and temperature sensors 
   </tr>
 </table>
 
+The following video shows the data collected by the smart sock being streamed to the app: 
 <img src="./assets/XcodeDataLog.gif" alt="GIF showing Xcode temperature data logs" width="800">
 
 > **Note:** Two temperature readings show `-127` because those sensors are not connected. This is why there is a warning saying temperature values look invalid
