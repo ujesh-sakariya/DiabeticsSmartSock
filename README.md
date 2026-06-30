@@ -79,9 +79,9 @@ The smart sock prototype is built using Arduino-compatible sensors embedded into
 
 ### Sensors
 - Temperature Sensors (4 total, 2 per foot)
-    - Type:Analog thermistor or digital temperature sensor (DS18B20)
+    - Type:digital temperature sensor (DS18B20)
     - Positioned at heel and ball regions of each foot
-    - Measures skin temperature at ~1 Hz
+    - Measures skin temperature at ~100 Hz
 - Pressure Sensors (4 total, 2 per foot)
     - Type: Force Sensitive Resistor (FSR)
     - Positioned at heel and ball regions of each foot
@@ -101,7 +101,7 @@ The smart sock prototype is built using Arduino-compatible sensors embedded into
 1. **poor circulation** (wounds heal slowly)
 2. **nerve damage** (can't feel much)
 
-A cut on the foot could easily get infected due to poor healing and spread uncontrollably. The only way to stop it in some cases is through **amputation**.If identified early, preventative methods can be put in place, however due to nerve damage, many don't catch this early enough.
+A cut on the foot could easily get infected due to poor healing and spread uncontrollably. The only way to stop it in some cases is through **amputation**. If identified early, preventative methods can be put in place, however due to nerve damage, many don't catch this early enough.
 
 Research shows that a **difference > 2.2C** between feet is a strong indicator of ulcer formation. In addition, pressure is a key indicator of the damage to the foot, as excessive amounts can damage the tissue further, reducing the likelihood of recovery.
 
